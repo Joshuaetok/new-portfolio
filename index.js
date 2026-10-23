@@ -50,28 +50,23 @@ const resumeRight = document.querySelector('.resume__right')
 const experienceContent = `
             <h4>Experience</h4>
                 <p>
-                    Skilled in web development and SEO, optimizing websites for speed, ranking, and engagement.
+                    Skilled in full-stack web development, project management, and technical SEO—delivering scalable platforms end to end.
                 </p>
                 <ul>
                     <li>
-                        <h6>2016 - 2020</h6>
-                        <h5>IT Support</h5>
-                        <p>NUCO Schools</p>
+                        <h6>Dec 2025 - Oct 2026</h6>
+                        <h5>Head of Operations</h5>
+                        <p>Ajalisco Production Industries LTD</p>
                     </li>
                     <li>
-                        <h6>2020 - 2023</h6>
-                        <h5>Intern</h5>
-                        <p>NiChips Technologies</p>
+                        <h6>Mar 2024 - Nov 2025</h6>
+                        <h5>Full Stack Developer | Project Lead</h5>
+                        <p>Power Graph Systems</p>
                     </li>
                     <li>
-                        <h6>2023 - 2024</h6>
-                        <h5>Fullstack Developer</h5>
-                        <p>Gtera Hosting</p>
-                    </li>
-                    <li>
-                        <h6>2025</h6>
-                        <h5>Wordpress Designer</h5>
-                        <p>SmartRob Tech</p>
+                        <h6>Feb 2022 - Feb 2024</h6>
+                        <h5>WordPress Developer</h5>
+                        <p>Nichips Technology</p>
                     </li>
                 </ul>
 `
