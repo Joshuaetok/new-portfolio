@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1440px;
+    height: 900px;
+    background: linear-gradient(135deg, #090d16 0%, #0f172a 40%, #171536 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #f1f5f9;
+    padding: 32px 40px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Header Window Frame */
+  .window-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .window-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .dot { width: 13px; height: 13px; border-radius: 50%; }
+  .dot.red { background: #ef4444; }
+  .dot.yellow { background: #f59e0b; }
+  .dot.green { background: #10b981; }
+
+  .brand-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
+  }
+  .brand-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-badge {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .brand-sub {
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .tech-pills {
+    display: flex;
+    gap: 8px;
+  }
+  .tech-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #cbd5e1;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Main Grid */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr 0.9fr;
+    gap: 24px;
+    margin-top: 18px;
+    flex: 1;
+  }
+
+  .card {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #f97316, #3b82f6);
+    opacity: 0.8;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .card-title-wrap h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title-wrap p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 3px;
+  }
+  .tag-indicator {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  /* Card 1: Sermons */
+  .sermon-hero-box {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .sermon-speaker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .speaker-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff;
+    border: 2px solid #60a5fa;
+  }
+  .speaker-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+  .speaker-info span {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .sermon-player {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .player-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .play-btn {
+    width: 32px;
+    height: 32px;
+    background: #f97316;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .waveform {
+    flex: 1;
+    margin: 0 12px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .wave-bar {
+    flex: 1;
+    background: #475569;
+    border-radius: 2px;
+  }
+  .wave-bar.active {
+    background: #f97316;
+  }
+  .time-badge {
+    font-size: 11px;
+    color: #94a3b8;
+    font-family: monospace;
+  }
+  .scripture-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(249, 115, 22, 0.12);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    color: #fb923c;
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+
+  /* Card 2: Giving & Donations */
+  .campaign-box {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .campaign-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .campaign-figures {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 6px;
+    font-size: 13px;
+  }
+  .figure-current {
+    font-size: 20px;
+    font-weight: 700;
+    color: #10b981;
+  }
+  .figure-goal {
+    font-size: 13px;
+    color: #94a3b8;
+    align-self: flex-end;
+  }
+  .progress-bg {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-fill {
+    width: 82%;
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #059669);
+    border-radius: 999px;
+  }
+  .fee-opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #cbd5e1;
+    margin-top: 12px;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .tax-statement-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #bfdbfe;
+    font-weight: 600;
+  }
+  .tax-statement-action span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge-pdf {
+    background: #ef4444;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* Card 3: Check-In & Matrix */
+  .kiosk-ticket {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .kiosk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .kiosk-badge {
+    background: #10b981;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .child-info h4 {
+    font-size: 15px;
+    color: #f1f5f9;
+    font-weight: 600;
+  }
+  .allergy-alert {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .pin-box {
+    margin-top: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pin-digits {
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #fb923c;
+  }
+  .matrix-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .stat-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: #38bdf8;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  /* Bottom Bar */
+  .footer-bar {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  .features-list {
+    display: flex;
+    gap: 20px;
+    font-size: 12.5px;
+    color: #94a3b8;
+  }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .check-icon {
+    color: #10b981;
+    font-weight: 700;
+  }
+  .cta-badge {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(249, 115, 22, 0.3);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Window Bar -->
+  <div class="window-top">
+    <div class="brand-title">
+      <div class="window-dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="brand-icon">⛪</div>
+      <div>
+        <div class="brand-name">
+          CongreGrid &amp; CongreGrid Pro
+          <span class="brand-badge">Enterprise Edition</span>
+        </div>
+        <div class="brand-sub">Modular Church Management &amp; Ministry Platform for WordPress &amp; Elementor</div>
+      </div>
+    </div>
+
+    <div class="tech-pills">
+      <div class="tech-pill"><span>⚡</span> PHP 7.4+ OOP</div>
+      <div class="tech-pill"><span>🧩</span> Elementor Widget API</div>
+      <div class="tech-pill"><span>🛡️</span> MySQL &amp; $wpdb</div>
+      <div class="tech-pill"><span>📄</span> Dompdf Statements</div>
+    </div>
+  </div>
+
+  <!-- Main 3-Column Feature Cards Grid -->
+  <div class="grid-container">
+
+    <!-- Card 1: Sermons & Scripture -->
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <h3>🎙️ Sermons &amp; Media Delivery</h3>
+            <p>Gapless HTML5 player with speaker profiles</p>
+          </div>
+          <span class="tag-indicator">Elementor Widget</span>
+        </div>
+
+        <div class="sermon-hero-box">
+          <div class="sermon-speaker">
+            <div class="speaker-avatar">DV</div>
+            <div class="speaker-info">
+              <h4>Walking in Purpose &amp; Grace</h4>
+              <span>Dr. David Vance • Series: Kingdom Living</span>
+            </div>
+          </div>
+
+          <div class="sermon-player">
+            <div class="player-top">
+              <div class="play-btn">▶</div>
+              <div class="waveform">
+                <div class="wave-bar active" style="height: 12px;"></div>
+                <div class="wave-bar active" style="height: 18px;"></div>
+                <div class="wave-bar active" style="height: 8px;"></div>
+                <div class="wave-bar active" style="height: 14px;"></div>
+                <div class="wave-bar active" style="height: 20px;"></div>
+                <div class="wave-bar active" style="height: 16px;"></div>
+                <div class="wave-bar" style="height: 10px;"></div>
+                <div class="wave-bar" style="height: 14px;"></div>
+                <div class="wave-bar" style="height: 18px;"></div>
+                <div class="wave-bar" style="height: 12px;"></div>
+                <div class="wave-bar" style="height: 16px;"></div>
+                <div class="wave-bar" style="height: 8px;"></div>
+              </div>
+              <div class="time-badge">14:25 / 42:10</div>
+            </div>
+          </div>
+
+          <div class="scripture-pill">
+            <span>📖 Auto-Linked Bible Text:</span>
+            <strong>Romans 8:28-39 [ESV]</strong>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">
+        Unified shortcode &amp; Elementor rendering architecture guarantees zero visual drift across themes.
+      </div>
+    </div>
+
+    <!-- Card 2: Donations & Giving (Pro) -->
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <h3>💳 Online Giving &amp; Campaigns</h3>
+            <p>Stripe &amp; PayPal with zero rounding drift</p>
+          </div>
+          <span class="tag-indicator" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3);">Pro Add-on</span>
+        </div>
+
+        <div class="campaign-box">
+          <div class="campaign-title">
+            <span>Sanctuary Renovation Fund</span>
+            <span style="color: #34d399; font-weight: 700;">85%</span>
+          </div>
+          <div class="campaign-figures">
+            <span class="figure-current">$42,850.00</span>
+            <span class="figure-goal">Goal: $50,000</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill"></div>
+          </div>
+          <div class="fee-opt">
+            <input type="checkbox" checked disabled>
+            <span>Cover 2.9% transaction processing fee (Donor Opt-in)</span>
+          </div>
+        </div>
+
+        <div class="tax-statement-action">
+          <span>
+            <span class="badge-pdf">PDF</span>
+            Annual Donor Tax Statements
+          </span>
+          <span style="color: #60a5fa;">Generated via Dompdf</span>
+        </div>
+      </div>
+
+      <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">
+        Financial figures stored as integer cents to eliminate floating-point currency calculation errors.
+      </div>
+    </div>
+
+    <!-- Card 3: Attendance & Child Kiosk -->
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <h3>🛡️ Kiosk &amp; Child Check-In</h3>
+            <p>Touchscreen check-in &amp; Sunday matrix</p>
+          </div>
+          <span class="tag-indicator" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">Safety Suite</span>
+        </div>
+
+        <div class="kiosk-ticket">
+          <div class="kiosk-header">
+            <div class="child-info">
+              <h4>Liam Edwards</h4>
+              <span class="allergy-alert">⚠️ Allergy: Peanuts</span>
+            </div>
+            <span class="kiosk-badge">Checked In</span>
+          </div>
+
+          <div class="pin-box">
+            <span style="font-size: 11px; color: #94a3b8;">Parent Pickup PIN:</span>
+            <span class="pin-digits">4 8 2 1</span>
+          </div>
+        </div>
+
+        <div class="matrix-stats">
+          <div class="stat-pill">
+            <div class="stat-num">248</div>
+            <div class="stat-lbl">Sunday Attendance</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-num">100%</div>
+            <div class="stat-lbl">Modular Architecture</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">
+        PIN-verified parent security badge and one-sheet admin spreadsheet for rapid Sunday roster marking.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Highlights Bar -->
+  <div class="footer-bar">
+    <div class="features-list">
+      <div class="feature-item"><span class="check-icon">✓</span> Zero-Drift Shortcode &amp; Elementor Parity</div>
+      <div class="feature-item"><span class="check-icon">✓</span> Human-Friendly Recurring Calendar</div>
+      <div class="feature-item"><span class="check-icon">✓</span> Member Self-Service Portal</div>
+      <div class="feature-item"><span class="check-icon">✓</span> Hardened Nonces &amp; RBAC Security</div>
+    </div>
+    <div class="cta-badge">Engineered by Joshua Etok</div>
+  </div>
+
+</body>
+</html>

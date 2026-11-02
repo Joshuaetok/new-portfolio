@@ -1,487 +1,651 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Joshua Etok — Web Developer & SEO Specialist</title>
-    <meta
-      name="description"
-      content="Joshua Etok is a web developer and SEO specialist in Nigeria building fast, SEO-optimized WordPress, WooCommerce and custom PHP/MySQL websites."
-    />
-    <meta name="theme-color" content="#06080a" />
-    <meta property="og:title" content="Joshua Etok — Web Developer & SEO Specialist" />
-    <meta
-      property="og:description"
-      content="High-performing, SEO-optimized websites with clean, modern design."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://joshuaetok.github.io/portfolio/assets/project11.webp" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Personal Portfolio</title>
+
+    <!-- Favicon -->
     <link rel="icon" href="./assets/portfolio-icon.png" type="image/png" />
 
-    <!-- Apply saved theme before paint to avoid a flash -->
-    <script>
-      try {
-        var t = localStorage.getItem("portfolio-theme-v2");
-        if (!t) t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", t);
-      } catch (e) {}
-      document.documentElement.classList.add("js");
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- ICONSCOUT CDN -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&display=swap"
       rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
     />
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+    <!-- SWIPERJS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- ANIMATE ON SCROLL -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <div class="bg" aria-hidden="true">
-      <span class="bg__blob bg__blob--a"></span>
-      <span class="bg__blob bg__blob--b"></span>
-      <span class="bg__grid"></span>
-    </div>
-    <div class="progress" aria-hidden="true"><span></span></div>
-
-    <a class="skip" href="#main">Skip to content</a>
-
-    <!-- ===================== NAV ===================== -->
-    <header class="nav">
-      <a href="#top" class="nav__logo" aria-label="Joshua Etok — home">
-        <span class="nav__mark">JE</span>
-        <span class="nav__name">Joshua Etok</span>
-      </a>
-      <nav class="nav__pill" aria-label="Primary">
-        <a href="#top" class="is-active" data-spy="top"><i class="uil uil-estate"></i><span>Home</span></a>
-        <a href="#resume" data-spy="resume"><i class="uil uil-user"></i><span>About</span></a>
-        <a href="#projects" data-spy="projects"><i class="uil uil-apps"></i><span>Work</span></a>
-        <a href="#reviews" data-spy="reviews"><i class="uil uil-comment-alt-heart"></i><span>Reviews</span></a>
-        <a href="#faqs" data-spy="faqs"><i class="uil uil-question-circle"></i><span>FAQ</span></a>
-        <a href="#contact" data-spy="contact"><i class="uil uil-message"></i><span>Contact</span></a>
-      </nav>
-      <div class="nav__actions">
-        <button class="icon-btn" id="themeBtn" aria-label="Toggle light and dark theme">
+    <!-- ========================= NAV BAR ========================= -->
+    <nav>
+      <div class="container nav__container">
+        <a href="index.html">Portfolio</a>
+        <button class="nav__theme-btn">
           <i class="uil uil-moon"></i>
         </button>
-        <a href="#contact" class="btn btn--primary btn--sm nav__cta">Hire me</a>
+      </div>
+    </nav>
+
+    <!-- ========================= FLOATING NAV ========================= -->
+    <menu class="floating__nav">
+      <a href="#" class="active"><i class="uil uil-estate"></i></a>
+      <a href="#resume"><i class="uil uil-user"></i></a>
+      <a href="#projects"><i class="uil uil-images"></i></a>
+      <a href="#faqs"><i class="uil uil-smile-dizzy"></i></a>
+      <a href="#contact"><i class="uil uil-phone"></i></a>
+    </menu>
+
+    <!-- ========================= HEADER ========================= -->
+    <header>
+      <div class="header__container">
+        <div class="header__image" data-aos="fade-up" data-aos-delay="800">
+          <img src="./assets/portrait.jpg" alt="Header Image" />
+        </div>
+        <h5 data-aos="fade-in">Hi, I'm Joshua</h5>
+        <h1 data-aos="fade-in">
+          Web Developer & <span>SEO Specialist</span><br />Based in Nigeria
+        </h1>
+        <p data-aos="fade-in">
+          I create high-performing, SEO-optimized websites that enhance
+          visibility, user engagement, and seamless functionality with clean,
+          modern design.
+        </p>
+        <div class="header__cta" data-aos="fade-in">
+          <a href="#projects" class="btn">My Projects</a>
+          <a href="#contact" class="btn primary">Hire me</a>
+        </div>
+
+        <menu class="header__socials">
+          <a href="https://github.com/Joshuaetok" target="_blank" rel="noopener" aria-label="GitHub"><i class="uil uil-github-alt"></i></a>
+          <a href="https://www.youtube.com/shorts/P1jPAKe_5eQ" target="_blank" rel="noopener" aria-label="YouTube"><i class="uil uil-youtube"></i></a>
+          <a href="https://joshuaetok.github.io/portfolio/" target="_blank" rel="noopener" aria-label="Portfolio"><i class="uil uil-dribbble"></i></a>
+          <a href="https://www.linkedin.com/in/joshua-etok-082957157" target="_blank" rel="noopener" aria-label="LinkedIn"
+            ><i class="uil uil-linkedin-alt"></i
+          ></a>
+        </menu>
       </div>
     </header>
 
-    <main id="main">
-      <!-- ===================== HERO ===================== -->
-      <section class="hero" id="top">
-        <div class="wrap hero__grid">
-          <div class="hero__copy">
-            <p class="badge reveal"><span class="badge__dot"></span> Available for new projects</p>
-            <h1 class="hero__title reveal">
-              I build websites that <span class="grad">rank, convert</span> & look
-              unforgettable.
-            </h1>
-            <p class="hero__lead reveal">
-              Hi, I'm <strong>Joshua</strong> — a web developer & SEO specialist based in Nigeria.
-              I create high-performing, SEO-optimized websites that boost visibility, engagement and
-              seamless functionality, with clean, modern design.
-            </p>
-            <div class="hero__cta reveal">
-              <a href="#projects" class="btn btn--primary">View my work <i class="uil uil-arrow-right"></i></a>
-              <a href="#contact" class="btn btn--ghost">Let's talk</a>
-            </div>
-            <ul class="socials reveal" aria-label="Social links">
-              <li><a href="https://github.com/Joshuaetok" target="_blank" rel="noopener" aria-label="GitHub"><i class="uil uil-github-alt"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/joshua-etok-082957157" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="uil uil-linkedin-alt"></i></a></li>
-              <li><a href="https://www.youtube.com/shorts/P1jPAKe_5eQ" target="_blank" rel="noopener" aria-label="YouTube"><i class="uil uil-youtube"></i></a></li>
-              <li><a href="https://wa.me/2348084017920" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="uil uil-whatsapp"></i></a></li>
-            </ul>
-          </div>
-
-          <div class="hero__visual reveal">
-            <div class="portrait">
-              <div class="portrait__ring"></div>
-              <div class="portrait__img">
-                <img src="./assets/portrait.webp" alt="Portrait of Joshua Etok" width="900" height="658" fetchpriority="high" />
-              </div>
-              <div class="chip chip--a"><i class="uil uil-search-alt"></i> SEO-first</div>
-              <div class="chip chip--b"><i class="uil uil-wordpress-simple"></i> WordPress & Woo</div>
-              <div class="chip chip--c"><i class="uil uil-code-branch"></i> PHP · MySQL</div>
-            </div>
-          </div>
+    <!-- ========================= RESUME ========================= -->
+    <section id="resume">
+      <div
+        class="container resume__container"
+        data-aos="fade-in"
+        data-aos-delay="200"
+      >
+        <div class="resume__left">
+          <h1>Why hire me</h1>
+          <p>
+            I build SEO-optimized, user-friendly websites with sleek designs.
+          </p>
+          <menu>
+            <button class="btn primary experience__btn">Experience</button>
+            <button class="btn education__btn">Education</button>
+            <button class="btn skills__btn">Skills</button>
+            <button class="btn about__btn">About me</button>
+          </menu>
         </div>
-
-        <div class="wrap">
-          <dl class="stats reveal">
-            <div><dt data-count="4" data-suffix="+">4+</dt><dd>Years of experience</dd></div>
-            <div><dt data-count="9" data-suffix="">9</dt><dd>Featured projects</dd></div>
-            <div><dt>2–4<small> wks</small></dt><dd>Typical delivery time</dd></div>
-            <div><dt data-count="100" data-suffix="%">100%</dt><dd>Mobile-responsive builds</dd></div>
-          </dl>
-        </div>
-      </section>
-
-      <!-- ===================== MARQUEE ===================== -->
-      <section class="marquee" aria-label="Technologies I work with">
-        <div class="marquee__track">
-          <ul>
-            <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>MySQL</li><li>WordPress</li>
-            <li>WooCommerce</li><li>Tailwind CSS</li><li>Webflow</li><li>Figma</li><li>Canva</li><li>Technical SEO</li>
-          </ul>
-          <ul aria-hidden="true">
-            <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>MySQL</li><li>WordPress</li>
-            <li>WooCommerce</li><li>Tailwind CSS</li><li>Webflow</li><li>Figma</li><li>Canva</li><li>Technical SEO</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- ===================== RESUME ===================== -->
-      <section class="section" id="resume">
-        <div class="wrap">
-          <header class="section__head reveal">
-            <p class="eyebrow">Why hire me</p>
-            <h2>SEO-optimized, user-friendly websites with <span class="grad">sleek design</span>.</h2>
-          </header>
-
-          <div class="resume reveal">
-            <div class="tabs" role="tablist" aria-label="Resume sections">
-              <button role="tab" id="tab-experience" aria-controls="panel-experience" aria-selected="true"><i class="uil uil-briefcase-alt"></i> Experience</button>
-              <button role="tab" id="tab-education" aria-controls="panel-education" aria-selected="false" tabindex="-1"><i class="uil uil-graduation-cap"></i> Education</button>
-              <button role="tab" id="tab-skills" aria-controls="panel-skills" aria-selected="false" tabindex="-1"><i class="uil uil-layers"></i> Skills</button>
-              <button role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" tabindex="-1"><i class="uil uil-user"></i> About me</button>
-            </div>
-
-            <div class="panels">
-              <!-- Experience -->
-              <div role="tabpanel" id="panel-experience" aria-labelledby="tab-experience" class="panel is-active">
-                <p class="panel__lead">Skilled in full-stack web development, project management, and technical SEO—delivering scalable platforms end to end.</p>
-                <ol class="timeline">
-                  <li><time>Dec 2025 – Oct 2026</time><h3>Head of Operations</h3><p>Ajalisco Production Industries LTD</p></li>
-                  <li><time>Mar 2024 – Nov 2025</time><h3>Full Stack Developer | Project Lead</h3><p>Power Graph Systems</p></li>
-                  <li><time>Feb 2022 – Feb 2024</time><h3>WordPress Developer</h3><p>Nichips Technology</p></li>
-                </ol>
-              </div>
-
-              <!-- Education -->
-              <div role="tabpanel" id="panel-education" aria-labelledby="tab-education" class="panel" hidden>
-                <p class="panel__lead">Certified in SEO, web development and digital tools for optimized performance.</p>
-                <div class="cards">
-                  <article class="mini"><i class="uil uil-university"></i><h3>University of Uyo</h3><p>Graduated with a B.Eng in Mechanical Engineering. Achieved a strong CGPA of 4.03/5.0, demonstrating consistent academic excellence and analytical skills.</p></article>
-                  <article class="mini"><i class="uil uil-linkedin"></i><h3>LinkedIn Learning</h3><p>Completed certifications in Project Management tools like Trello, Notion and Adobe Acrobat Pro. Gained hands-on proficiency and workflow optimization experience.</p></article>
-                  <article class="mini"><i class="uil uil-google"></i><h3>Google Digital Skills</h3><p>Trained in SEO, digital marketing and website optimization. Developed in-depth understanding of user behavior, branding and growth-driven design principles.</p></article>
-                  <article class="mini"><i class="uil uil-desktop"></i><h3>IBBIL ICT Academy</h3><p>Studied web development, Microsoft Office Suite, DBMS and CorelDraw. Built a strong foundation in tech tools, programming logic and visual communication.</p></article>
-                </div>
-              </div>
-
-              <!-- Skills -->
-              <div role="tabpanel" id="panel-skills" aria-labelledby="tab-skills" class="panel" hidden>
-                <p class="panel__lead">Proficient in HTML, CSS, PHP, MySQL and WordPress, with expertise in Figma, Webflow and Canva for seamless web design.</p>
-                <div class="skills">
-                  <div class="skill-group"><h3>Build</h3><ul><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>MySQL</li><li>Tailwind CSS</li></ul></div>
-                  <div class="skill-group"><h3>CMS & Commerce</h3><ul><li>WordPress</li><li>WooCommerce</li><li>Elementor</li><li>Custom plugins</li><li>Paystack API</li><li>WhatsApp API</li></ul></div>
-                  <div class="skill-group"><h3>Design & Growth</h3><ul><li>Figma</li><li>Webflow</li><li>Canva</li><li>Technical SEO</li><li>Digital marketing</li></ul></div>
-                </div>
-              </div>
-
-              <!-- About -->
-              <div role="tabpanel" id="panel-about" aria-labelledby="tab-about" class="panel" hidden>
-                <p class="panel__lead">Passionate web developer & SEO expert, crafting optimized, engaging and high-performing websites with precision.</p>
-                <dl class="facts">
-                  <div><dt>Name</dt><dd>Joshua Etok</dd></div>
-                  <div><dt>Experience</dt><dd>4+ years</dd></div>
-                  <div><dt>Email</dt><dd><a href="mailto:etokjoshua@gmail.com">etokjoshua@gmail.com</a></dd></div>
-                  <div><dt>Collaboration</dt><dd><span class="badge badge--sm"><span class="badge__dot"></span>Available</span></dd></div>
-                  <div><dt>Language</dt><dd>English</dd></div>
-                  <div><dt>Phone</dt><dd><a href="tel:+2348084017920">+234 808 401 7920</a></dd></div>
-                  <div><dt>Nationality</dt><dd>Nigeria</dd></div>
-                  <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/joshua-etok-082957157" target="_blank" rel="noopener">@Joshuaetok</a></dd></div>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== PROJECTS ===================== -->
-      <section class="section" id="projects">
-        <div class="wrap">
-          <header class="section__head reveal">
-            <p class="eyebrow">Selected work</p>
-            <h2>Recent <span class="grad">projects</span></h2>
-            <p>Websites and platforms built for optimal performance and usability.</p>
-          </header>
-
-          <div class="filters reveal" role="group" aria-label="Filter projects">
-            <button class="pill is-active" data-filter="all">All <span>11</span></button>
-            <button class="pill" data-filter="wordpress">WordPress <span>8</span></button>
-            <button class="pill" data-filter="plugins">Plugins <span>4</span></button>
-            <button class="pill" data-filter="fullstack">Fullstack <span>3</span></button>
-          </div>
-
-          <div class="projects">
-            <article class="project reveal" data-cat="wordpress plugins">
-              <a class="project__img" href="https://github.com/Joshuaetok/congregrid" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/congregrid.webp" alt="CongreGrid &amp; CongreGrid Pro" loading="lazy" width="1100" height="688" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WordPress</li><li>Elementor</li><li>PHP OOP</li></ul>
-                <h3>CongreGrid &amp; CongreGrid Pro</h3>
-                <p class="project__sub">Modular church management platform</p>
-                <p>Enterprise modular church management &amp; ministry platform for WordPress &amp; Elementor. Features sermons with gapless HTML5 audio streaming, recurring event calendar, attendee kiosk check-in, small groups, and online giving with automated donor tax PDF statements.</p>
-                <div class="project__links"><a href="https://github.com/Joshuaetok/congregrid" target="_blank" rel="noopener"><i class="uil uil-github-alt"></i> Source code <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress plugins">
-              <a class="project__img" href="https://github.com/Joshuaetok/orderspell" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/orderspell.webp" alt="OrderSpell WooCommerce WhatsApp Plugin" loading="lazy" width="1100" height="688" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WooCommerce</li><li>HPOS</li><li>Vanilla JS</li></ul>
-                <h3>OrderSpell</h3>
-                <p class="project__sub">Two-tap WhatsApp checkout for WooCommerce</p>
-                <p>High-performance 2-tap WhatsApp checkout pipeline for WooCommerce HPOS. Creates genuine database orders prior to redirect, capturing buyer contact with anti-dropoff send tracking, desktop QR checkout, and merchant admin command boxes.</p>
-                <div class="project__links"><a href="https://github.com/Joshuaetok/orderspell" target="_blank" rel="noopener"><i class="uil uil-github-alt"></i> Source code <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="fullstack">
-              <a class="project__img" href="https://ajalaafrica.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project1.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>PHP</li><li>MySQL</li><li>JavaScript</li></ul>
-                <h3>Custom Audio Streaming Platform</h3>
-                <p class="project__sub">PHP & MySQL architecture</p>
-                <p>Architected a custom relational database to manage users and playlists, with a JavaScript-based audio player for gapless playback.</p>
-                <div class="project__links"><a href="https://ajalaafrica.com/" target="_blank" rel="noopener">Live site <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress plugins">
-              <a class="project__img" href="https://joshuaetok.github.io/advance-filter/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project11.webp" alt="" loading="lazy" width="1100" height="554" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WooCommerce</li><li>Elementor</li><li>AJAX</li></ul>
-                <h3>Advanced Product Filter Plugin</h3>
-                <p class="project__sub">For WooCommerce & Elementor</p>
-                <p>Instant, no-reload AJAX filtering for WooCommerce stores. Automatically detects color swatches, size tiles, dynamic price sliders, and attribute counts with full Elementor widget integration.</p>
-                <div class="project__links"><a href="https://joshuaetok.github.io/advance-filter/" target="_blank" rel="noopener">Live demo <i class="uil uil-arrow-up-right"></i></a> <a href="https://github.com/Joshuaetok/advanced-product-filter-for-woocommerce" target="_blank" rel="noopener"><i class="uil uil-github-alt"></i> GitHub <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress plugins">
-              <a class="project__img" href="https://github.com/Joshuaetok/workcity-assessment-wordpress" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project9.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WordPress</li><li>OOP PHP</li><li>Plugin</li></ul>
-                <h3>Custom WordPress CRM Plugin</h3>
-                <p class="project__sub">CRM & project manager</p>
-                <p>Developed a standalone WordPress plugin from scratch using object-oriented PHP to manage client projects, custom fields and admin workflows without third-party tools.</p>
-                <div class="project__links"><a href="https://github.com/Joshuaetok/workcity-assessment-wordpress" target="_blank" rel="noopener"><i class="uil uil-github-alt"></i> Source code <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress">
-              <a class="project__img" href="https://ajaliscogroup.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project2.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WooCommerce</li><li>SEO</li><li>Catalog</li></ul>
-                <h3>FMCG Corporate Brand Portal</h3>
-                <p class="project__sub">Custom catalog & SEO strategy</p>
-                <p>A responsive, SEO-friendly WooCommerce website for a growing FMCG brand, crafted to showcase products, improve trust and drive engagement.</p>
-                <div class="project__links"><a href="https://ajaliscogroup.com/" target="_blank" rel="noopener">Live site <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress">
-              <a class="project__img" href="https://jbtslimited.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project3.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WooCommerce</li><li>WhatsApp API</li><li>SEO</li></ul>
-                <h3>B2B Engineering Services Platform</h3>
-                <p class="project__sub">WhatsApp API integration</p>
-                <p>A sleek, SEO-optimized WooCommerce site offering specialized engineering services with WhatsApp-integrated ordering for easy, real-time communication.</p>
-                <div class="project__links"><a href="https://jbtslimited.com/" target="_blank" rel="noopener">Live site <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="fullstack">
-              <a class="project__img" href="https://seedsofknowledgeschool.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project4.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>PHP</li><li>MySQL</li><li>Dashboards</li></ul>
-                <h3>SaaS School Administration Portal</h3>
-                <p class="project__sub">Role-based dashboards</p>
-                <p>Built a secure, comprehensive management system featuring student record tracking, automatic grade calculation and distinct admin/user permission levels.</p>
-                <div class="project__links">
-                  <a href="https://seedsofknowledgeschool.com/" target="_blank" rel="noopener">Live site <i class="uil uil-arrow-up-right"></i></a>
-                  <a href="https://github.com/Joshuaetok/school/" target="_blank" rel="noopener"><i class="uil uil-github-alt"></i> Code</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress">
-              <a class="project__img" href="https://slategray-shrew-701305.hostingersite.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project5.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>HTML5</li><li>CSS3</li><li>WordPress theme</li></ul>
-                <h3>Pixel-Perfect WordPress Theme</h3>
-                <p class="project__sub">Custom HTML5/CSS3 to WordPress</p>
-                <p>Converted a complex corporate design into a fully functional, responsive WordPress theme with 100% visual fidelity to the original reference.</p>
-                <div class="project__links"><a href="https://slategray-shrew-701305.hostingersite.com/" target="_blank" rel="noopener">Live site <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress">
-              <a class="project__img" href="https://laspanichoriginals.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project6.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WooCommerce</li><li>Mobile-first</li></ul>
-                <h3>Modern Fashion E-Commerce</h3>
-                <p class="project__sub">Mobile-first WooCommerce design</p>
-                <p>A stylish WooCommerce website for clothing and accessories, built with a modern layout, mobile responsiveness and an optimized shopping experience.</p>
-                <div class="project__links"><a href="https://laspanichoriginals.com/" target="_blank" rel="noopener">Live site <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-
-            <article class="project reveal" data-cat="wordpress">
-              <a class="project__img" href="https://oastechnologies.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <img src="./assets/project7.webp" alt="" loading="lazy" width="1100" height="619" />
-              </a>
-              <div class="project__body">
-                <ul class="tags"><li>WooCommerce</li><li>AI chatbot</li><li>Paystack</li></ul>
-                <h3>Tech E-Commerce Hub</h3>
-                <p class="project__sub">AI chatbot & payment API integration</p>
-                <p>Built a complex WooCommerce store for engineering hardware featuring AI chatbot support for customer queries and seamless Paystack integration for local payments.</p>
-                <div class="project__links"><a href="https://oastechnologies.com/" target="_blank" rel="noopener">Live site <i class="uil uil-arrow-up-right"></i></a></div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== REVIEWS ===================== -->
-      <section class="section" id="reviews">
-        <div class="wrap">
-          <header class="section__head section__head--row reveal">
-            <div>
-              <p class="eyebrow">Testimonials</p>
-              <h2>What my <span class="grad">clients</span> say</h2>
-              <p>Reviews from clients I've had the pleasure to serve.</p>
-            </div>
-            <div class="arrows">
-              <button class="icon-btn" id="prev" aria-label="Previous review"><i class="uil uil-arrow-left"></i></button>
-              <button class="icon-btn" id="next" aria-label="Next review"><i class="uil uil-arrow-right"></i></button>
-            </div>
-          </header>
-
-          <div class="reviews" id="reviewTrack" tabindex="0" aria-label="Client reviews">
-            <figure class="review">
-              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <blockquote>Working with Joshua was incredible! He delivered a fast, secure music platform with custom features beyond expectations.</blockquote>
-              <figcaption><img src="./assets/avatar6.jpg" alt="" loading="lazy" width="48" height="48" /><div><strong>Ajala Africa</strong><span>Musician</span></div></figcaption>
-            </figure>
-            <figure class="review">
-              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <blockquote>Joshua built a sleek, SEO-optimized site that beautifully reflects our brand. The design is clean, fast and very professional.</blockquote>
-              <figcaption><img src="./assets/avatar5.jpg" alt="" loading="lazy" width="48" height="48" /><div><strong>Engr. Emmanuel</strong><span>CEO</span></div></figcaption>
-            </figure>
-            <figure class="review">
-              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <blockquote>The fintech design exceeded all expectations. Smooth toggle, dark theme and an interface that feels truly premium. Highly recommended!</blockquote>
-              <figcaption><img src="./assets/avatar1.jpg" alt="" loading="lazy" width="48" height="48" /><div><strong>Dolapo Ade</strong><span>Founder</span></div></figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== FAQ ===================== -->
-      <section class="section" id="faqs">
-        <div class="wrap faq">
-          <header class="section__head reveal">
-            <p class="eyebrow">FAQ</p>
-            <h2>Frequently asked <span class="grad">questions</span></h2>
-            <p>Common questions about my services and workflow.</p>
-          </header>
-          <div class="faq__list reveal">
-            <details open>
-              <summary>What's your rate?</summary>
-              <p>My rates depend on the scope and timeline of the project. I offer flexible pricing models including hourly rates, project-based fees and retainers. Every quote is tailored to suit your unique needs.</p>
-            </details>
-            <details>
-              <summary>Can you handle a full website project alone?</summary>
-              <p>Absolutely. I specialize in full-stack development and also offer expert SEO and design services for complete, high-quality delivery.</p>
-            </details>
-            <details>
-              <summary>Do you offer support after a project ends?</summary>
-              <p>Yes. I provide post-launch support packages which include site monitoring, bug fixes and regular updates to ensure your site remains optimized and secure.</p>
-            </details>
-            <details>
-              <summary>Are you available for urgent or rush projects?</summary>
-              <p>Yes, I take on urgent projects based on availability. Rush projects come with a premium fee and will still be delivered with top-tier quality and precision.</p>
-            </details>
-            <details>
-              <summary>Can we collaborate on long-term projects?</summary>
-              <p>Definitely. I enjoy building lasting relationships with clients. Whether it's ongoing website updates, SEO strategies or new feature rollouts, I'm in for the long haul.</p>
-            </details>
-            <details>
-              <summary>What's your average project turnaround time?</summary>
-              <p>Project timelines vary based on complexity, but most standard websites are completed within 2–4 weeks. We'll agree on a clear timeline before starting to ensure smooth delivery.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== CONTACT ===================== -->
-      <section class="section" id="contact">
-        <div class="wrap">
-          <div class="contact reveal">
-            <div class="contact__info">
-              <p class="eyebrow">Get in touch</p>
-              <h2>Have a project in mind? <span class="grad">Let's build it.</span></h2>
-              <p>Tell me about your idea and I'll get back to you quickly with a plan and a clear timeline.</p>
-              <ul class="contact__links">
-                <li><a href="mailto:etokjoshua@gmail.com"><i class="uil uil-envelope"></i><span><small>Email</small>etokjoshua@gmail.com</span></a></li>
-                <li><a href="https://wa.me/2348084017920" target="_blank" rel="noopener"><i class="uil uil-whatsapp"></i><span><small>WhatsApp</small>+234 808 401 7920</span></a></li>
-                <li><a href="https://m.me/joshua.etok.12" target="_blank" rel="noopener"><i class="uil uil-facebook-messenger-alt"></i><span><small>Messenger</small>joshua.etok.12</span></a></li>
-                <li><a href="tel:+2348084017920"><i class="uil uil-phone"></i><span><small>Phone</small>+234 808 401 7920</span></a></li>
-              </ul>
-            </div>
-
-            <form class="form" action="https://formsubmit.co/etokjoshua1@gmail.com" method="POST">
-              <input type="hidden" name="_next" value="https://joshuaetok.github.io/portfolio/?sent=1#contact" />
-              <input type="hidden" name="_subject" value="New message from your portfolio" />
-              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-              <label>Full name
-                <input type="text" name="Name" placeholder="Your name" required autocomplete="name" />
-              </label>
-              <label>Email address
-                <input type="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
-              </label>
-              <label>Message
-                <textarea name="Message" rows="6" placeholder="Tell me about your project…" required></textarea>
-              </label>
-              <button type="submit" class="btn btn--primary btn--block">Send message <i class="uil uil-message"></i></button>
-              <p class="form__ok" id="formOk" hidden><i class="uil uil-check-circle"></i> Thanks! Your message has been sent.</p>
-            </form>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="wrap footer__row">
-        <p>© <span id="year">2026</span> Joshua Etok. Crafted with care in Nigeria.</p>
-        <a href="#top" class="footer__top">Back to top <i class="uil uil-arrow-up"></i></a>
+        <div class="resume__right"></div>
       </div>
-    </footer>
+    </section>
 
+    <!-- ========================= PROJECTS ========================= -->
+    <section class="projects" id="projects">
+      <h1>Recent Projects</h1>
+      <p>
+        Explore my recent websites and platforms built for optimal performance
+        and usability.
+      </p>
+      <menu class="projects__categories">
+        <button class="btn" data-filter="*">All</button>
+        <button class="btn" data-filter=".frontend">WordPress</button>
+        <button class="btn" data-filter=".plugins">Plugins</button>
+      <!--  <button class="btn" data-filter=".backend">Backend</button> -->
+        <button class="btn" data-filter=".fullstack">Fullstack</button>
+      </menu>
+      <div
+        class="container projects__container"
+        data-aos="fade-in"
+        data-aos-delay="200"
+      >
+        <articles class="project mix frontend plugins" data-order="1">
+          <div class="project__image">
+            <img src="./assets/congregrid.png" alt="CongreGrid &amp; CongreGrid Pro Church Management Platform" />
+          </div>
+          <h5>CongreGrid &amp; CongreGrid Pro | Modular Church Management Platform</h5>
+          <p>
+            Modular church management &amp; ministry platform for WordPress &amp; Elementor. Features sermons with gapless HTML5 audio streaming, recurring event calendar, attendee kiosk check-in, small groups, and online giving with automated donor tax PDF statements.
+          </p>
+          <div class="projects__cta">
+            <a href="https://github.com/Joshuaetok/congregrid" class="btn primary" target="_blank" title="View Repository"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix frontend plugins" data-order="1">
+          <div class="project__image">
+            <img src="./assets/orderspell.png" alt="OrderSpell WooCommerce WhatsApp Plugin" />
+          </div>
+          <h5>OrderSpell | Conversational Commerce &amp; Chat Orders for WooCommerce</h5>
+          <p>
+            High-performance 2-tap WhatsApp checkout pipeline for WooCommerce HPOS. Creates genuine database orders prior to redirect, capturing buyer contact with anti-dropoff send tracking, desktop QR checkout, and merchant admin command boxes.
+          </p>
+          <div class="projects__cta">
+            <a href="https://github.com/Joshuaetok/orderspell" class="btn primary" target="_blank" title="View Repository"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix fullstack" data-order="1">
+          <div class="project__image">
+            <img src="./assets/project1.png" alt="Project One" />
+          </div>
+          <h5>Custom Audio Streaming Platform | PHP & MySQL Architecture</h5>
+          <p>
+            Architected a custom relational database to manage users and playlists, with a JavaScript-based audio player for gapless playback.
+          </p>
+          <div class="projects__cta">
+            <a href="https://ajalaafrica.com/" class="btn primary" target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix frontend plugins" data-order="2">
+          <div class="project__image">
+            <img src="./assets/project11.png" alt="Advanced Product Filter Plugin" />
+          </div>
+          <h5>Advanced Product Filter Plugin for WooCommerce & Elementor</h5>
+          <p>
+            Advanced AJAX Product Filter for WooCommerce adds instant, no‑reload filtering to your store. Automatically detects color swatches, size tiles, dynamic price sliders, and attribute counts with full Elementor widget integration.
+          </p>
+          <div class="projects__cta">
+            <a href="https://joshuaetok.github.io/advance-filter/"
+              class="btn primary" target="_blank" title="Live Demo"><i class="uil uil-link"></i
+            ></a>
+            <a href="https://github.com/Joshuaetok/advanced-product-filter-for-woocommerce" class="btn" target="_blank" title="View Repository"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix frontend plugins" data-order="2">
+          <div class="project__image">
+            <img src="./assets/project9.png" alt="Client Projects Manager" />
+          </div>
+          <h5>Custom WordPress Plugin Development | CRM & Project Manager</h5>
+          <p>
+            Developed a standalone WordPress plugin from scratch using object-oriented PHP to manage client projects, custom fields, and admin workflows without relying on third-party tools.
+          </p>
+          <div class="projects__cta">
+            <a href="https://github.com/Joshuaetok/workcity-assessment-wordpress" class="btn primary" target="_blank" title="View Repository"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix frontend" data-order="2">
+          <div class="project__image">
+            <img src="./assets/project2.png" alt="Project Two" />
+          </div>
+          <h5>FMCG Corporate Brand Portal | Custom Catalog & SEO Strategy</h5>
+          <p>
+            A responsive, SEO-friendly Woocommerce website for a growing FMCG brand,
+            crafted to showcase their products, improve trust, and drive engagement.
+          </p>
+          <div class="projects__cta">
+            <a href="https://ajaliscogroup.com/" class="btn primary" target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix frontend" data-order="3">
+          <div class="project__image">
+            <img src="./assets/project3.png" alt="Project Three" />
+          </div>
+          <h5>B2B Engineering Services Platform | WhatsApp API Integration</h5>
+          <p>
+            A sleek, SEO-optimized WooCommerce site offering specialized engineering
+            services with WhatsApp-integrated ordering for easy, real-time communication.
+          </p>
+          <div class="projects__cta">
+            <a href="https://jbtslimited.com/" class="btn primary" target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix fullstack" data-order="4">
+          <div class="project__image">
+            <img src="./assets/project4.png" alt="Project Four" />
+          </div>
+          <h5>SaaS School Administration Portal | Role-Based Dashboards (PHP/MySQL)</h5>
+          <p>
+            Built a secure comprehensive management system featuring student record tracking, automatic grade calculation, and distinct admin/user permission levels.
+          </p>
+          <div class="projects__cta">
+            <a href="https://seedsofknowledgeschool.com/" class="btn primary" target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+            <a href="https://github.com/Joshuaetok/school/" class="btn" target="_blank"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix frontend" data-order="4">
+          <div class="project__image">
+            <img src="./assets/project5.png" alt="Project Four" />
+          </div>
+          <h5>Pixel-Perfect WordPress Theme Development | Custom HTML5/CSS3 to WordPress</h5>
+          <p>
+            Converted a complex corporate design into a fully functional, responsive WordPress theme with 100% visual fidelity to the original reference.
+          </p>
+          <div class="projects__cta">
+            <a
+              href="https://slategray-shrew-701305.hostingersite.com/"
+              class="btn primary"
+              target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+          </div>
+        </articles>
+
+        <articles class="project mix frontend" data-order="4">
+          <div class="project__image">
+            <img src="./assets/project6.png" alt="Project " />
+          </div>
+          <h5>Modern Fashion E-Commerce | Mobile-First WooCommerce Design</h5>
+          <p>
+            A stylish WooCommerce website for clothing and accessories, built with a modern
+            layout, mobile responsiveness, and optimized to enhance user shopping experience.
+          </p>
+          <div class="projects__cta">
+            <a
+              href="https://laspanichoriginals.com/"
+              class="btn primary"
+              target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+          </div>
+        </articles>
+
+        <articles class="project mix frontend" data-order="4">
+          <div class="project__image">
+            <img src="./assets/project7.png" alt="Project " />
+          </div>
+          <h5>Tech E-Commerce Hub | AI Chatbot & Payment API Integration</h5>
+          <p>
+            Built a complex WooCommerce store for engineering hardware featuring AI chatbot support for customer queries and seamless Paystack API integration for local payments.
+          </p>
+          <div class="projects__cta">
+            <a
+              href="https://oastechnologies.com/"
+              class="btn primary"
+              target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+          </div>
+        </articles>
+
+        <!--
+        <articles class="project mix frontend" data-order="4">
+          <div class="project__image">
+            <img src="./assets/project8.png" alt="Project " />
+          </div>
+          <h5>Table Water Website</h5>
+          <p>
+            A custom-designed, SEO-optimized WordPress site for a premium Table
+            Water brand. First of its kind, tailored for visibility and brand
+            identity.
+          </p>
+          <div class="projects__cta">
+            <a
+              href="https://tablewater.ajaliscogroup.com/"
+              class="btn primary"
+              target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+          </div>
+        </articles>
+        <!--
+        <articles class="project mix frontend" data-order="4">
+          <div class="project__image">
+            <img src="./assets/project4.jpg" alt="Project Four" />
+          </div>
+          <h5>Project Three Title (Frontend)</h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate
+            neque nostrum molestias, dolores! Animi, eos.
+          </p>
+          <div class="projects__cta">
+            <a href="#" class="btn primary" target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+            <a href="#" class="btn" target="_blank"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix frontend" data-order="5">
+          <div class="project__image">
+            <img src="./assets/project5.jpg" alt="Project Five" />
+          </div>
+          <h5>Project Five Title (Frontend)</h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate
+            neque nostrum molestias, dolores! Animi, eos.
+          </p>
+          <div class="projects__cta">
+            <a href="#" class="btn primary" target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+            <a href="#" class="btn" target="_blank"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        <articles class="project mix backend" data-order="6">
+          <div class="project__image">
+            <img src="./assets/project6.jpg" alt="Project Six" />
+          </div>
+          <h5>Project Six Title (Backend)</h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate
+            neque nostrum molestias, dolores! Animi, eos.
+          </p>
+          <div class="projects__cta">
+            <a href="#" class="btn primary" target="_blank"
+              ><i class="uil uil-link"></i
+            ></a>
+            <a href="#" class="btn" target="_blank"
+              ><i class="uil uil-github-alt"></i
+            ></a>
+          </div>
+        </articles>
+        -->
+      </div>
+    </section>
+
+    <!-- ========================= TESTIMONIALS ========================= -->
+    <section id="swiper">
+      <h1>What My Clients Say</h1>
+      <p>Reviews from clients I have had the pleasure to serve.</p>
+      <div class="container swiper">
+        <div class="swiper-wrapper">
+          <figure class="swiper-slide">
+            <figcaption>
+              Working with Joshua was incredible! He delivered a fast, secure
+              music platform with custom features beyond expectations.
+            </figcaption>
+            <div class="swiper__client">
+              <div class="swiper__client-avatar">
+                <img src="./assets/avatar6.jpg" alt="Client One" />
+              </div>
+              <div class="swiper__client-details">
+                <h5>Ajala Africa</h5>
+                <small>Musician</small>
+              </div>
+            </div>
+          </figure>
+          <figure class="swiper-slide">
+            <figcaption>
+              Joshua built a sleek, SEO-optimized site that beautifully reflects
+              our brand. The design is clean, fast, and very professional.
+            </figcaption>
+            <div class="swiper__client">
+              <div class="swiper__client-avatar">
+                <img src="./assets/avatar5.jpg" alt="Client One" />
+              </div>
+              <div class="swiper__client-details">
+                <h5>Engr. Emmanuel</h5>
+                <small>CEO</small>
+              </div>
+            </div>
+          </figure>
+          <figure class="swiper-slide">
+            <figcaption>
+              The fintech design exceeded all expectations. Smooth toggle, dark
+              theme, and an interface that feels truly premium. Highly
+              recommended!
+            </figcaption>
+            <div class="swiper__client">
+              <div class="swiper__client-avatar">
+                <img src="./assets/avatar1.jpg" alt="Client One" />
+              </div>
+              <div class="swiper__client-details">
+                <h5>Dolapo Ade</h5>
+                <small>Founder</small>
+              </div>
+            </div>
+          </figure>
+          <!--
+          <figure class="swiper-slide">
+            <figcaption>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+              soluta itaque ipsam repellendus voluptatibus consequatur
+              excepturi. Earum aut veritatis nesciunt!
+            </figcaption>
+            <div class="swiper__client">
+              <div class="swiper__client-avatar">
+                <img src="./assets/avatar4.jpg" alt="Client One" />
+              </div>
+              <div class="swiper__client-details">
+                <h5>Mana Ama McBrown</h5>
+                <small>Actress</small>
+              </div>
+            </div>
+          </figure>
+          <figure class="swiper-slide">
+            <figcaption>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+              soluta itaque ipsam repellendus voluptatibus consequatur
+              excepturi. Earum aut veritatis nesciunt!
+            </figcaption>
+            <div class="swiper__client">
+              <div class="swiper__client-avatar">
+                <img src="./assets/avatar2.jpg" alt="Client One" />
+              </div>
+              <div class="swiper__client-details">
+                <h5>Mana Ama McBrown</h5>
+                <small>Actress</small>
+              </div>
+            </div>
+          </figure>
+          <figure class="swiper-slide">
+            <figcaption>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+              soluta itaque ipsam repellendus voluptatibus consequatur
+              excepturi. Earum aut veritatis nesciunt!
+            </figcaption>
+            <div class="swiper__client">
+              <div class="swiper__client-avatar">
+                <img src="./assets/avatar3.jpg" alt="Client One" />
+              </div>
+              <div class="swiper__client-details">
+                <h5>Mana Ama McBrown</h5>
+                <small>Actress</small>
+              </div>
+            </div>
+          </figure>
+          -->
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- ========================= FAQS ========================= -->
+    <section id="faqs">
+      <h1>Frequently Asked Questions</h1>
+      <p>
+        Common questions and answers about my services and workflow process.
+      </p>
+      <menu class="container faqs__container">
+        <li class="faqs__item" data-aos="fade-in" data-aos-delay="200">
+          <div class="faqs__item-top">
+            <span class="faq__icon"><i class="uil uil-angle-down"></i></span>
+            <h5>What's your rate?</h5>
+          </div>
+          <div class="faqs__item-bottom">
+            <span></span>
+            <p>
+              My rates depend on the scope and timeline of the project. I offer
+              flexible pricing models including hourly rates, project-based
+              fees, and retainers. Every quote is tailored to suit your unique
+              needs.
+            </p>
+          </div>
+        </li>
+        <li class="faqs__item" data-aos="fade-in" data-aos-delay="200">
+          <div class="faqs__item-top">
+            <span class="faq__icon"><i class="uil uil-angle-down"></i></span>
+            <h5>Can you handle a full website project alone?</h5>
+          </div>
+          <div class="faqs__item-bottom">
+            <span></span>
+            <p>
+              Absolutely. I specialize in full-stack development and also offer
+              expert SEO and design services for complete, high-quality
+              delivery.
+            </p>
+          </div>
+        </li>
+        <li class="faqs__item" data-aos="fade-in" data-aos-delay="400">
+          <div class="faqs__item-top">
+            <span class="faq__icon"><i class="uil uil-angle-down"></i></span>
+            <h5>Do you offer support after a project ends?</h5>
+          </div>
+          <div class="faqs__item-bottom">
+            <span></span>
+            <p>
+              Yes. I provide post-launch support packages which include site
+              monitoring, bug fixes, and regular updates to ensure your site
+              remains optimized and secure.
+            </p>
+          </div>
+        </li>
+        <li class="faqs__item" data-aos="fade-in" data-aos-delay="400">
+          <div class="faqs__item-top">
+            <span class="faq__icon"><i class="uil uil-angle-down"></i></span>
+            <h5>Are you available for urgent or rush projects?</h5>
+          </div>
+          <div class="faqs__item-bottom">
+            <span></span>
+            <p>
+              Yes, I do take on urgent projects based on availability. Rush
+              projects come with a premium fee and will still be delivered with
+              top-tier quality and precision.
+            </p>
+          </div>
+        </li>
+        <li class="faqs__item" data-aos="fade-in" data-aos-delay="600">
+          <div class="faqs__item-top">
+            <span class="faq__icon"><i class="uil uil-angle-down"></i></span>
+            <h5>Can we collaborate on long-term projects?</h5>
+          </div>
+          <div class="faqs__item-bottom">
+            <span></span>
+            <p>
+              Definitely. I enjoy building lasting relationships with clients.
+              Whether it's ongoing website updates, SEO strategies, or new
+              feature rollouts, I'm in for the long haul.
+            </p>
+          </div>
+        </li>
+        <li class="faqs__item" data-aos="fade-in" data-aos-delay="600">
+          <div class="faqs__item-top">
+            <span class="faq__icon"><i class="uil uil-angle-down"></i></span>
+            <h5>What's your average project turnaround time?</h5>
+          </div>
+          <div class="faqs__item-bottom">
+            <span></span>
+            <p>
+              Project timelines vary based on complexity, but most standard
+              websites are completed within 2–4 weeks. We'll agree on a clear
+              timeline before starting to ensure smooth delivery.
+            </p>
+          </div>
+        </li>
+      </menu>
+    </section>
+
+    <!-- ========================= CONTACT ========================= -->
+    <section id="contact">
+      <div class="container contact__container">
+        <menu class="contact__options">
+          <a
+            href="mailto:etokjoshua@gmail.com"
+            class="contact__option"
+            target="_blank"
+            aria-label="Email"
+          >
+            <i class="uil uil-envelope"></i>
+          </a>
+          <a
+            href="https://m.me/joshua.etok.12"
+            class="contact__option"
+            target="_blank"
+            aria-label="Messenger"
+          >
+            <i class="uil uil-facebook-messenger-alt"></i>
+          </a>
+          <a
+            href="https://wa.me/2348084017920"
+            class="contact__option"
+            target="_blank"
+            aria-label="WhatsApp"
+          >
+            <i class="uil uil-whatsapp"></i>
+          </a>
+          <a href="tel:+2348084017920" class="contact__option" target="_blank" aria-label="Phone">
+            <i class="uil uil-phone"></i>
+          </a>
+        </menu>
+        <form
+          action="https://formsubmit.co/etokjoshua1@gmail.com"
+          method="POST"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+            <!-- Redirect after submit -->
+          <input type="hidden" name="_next" value="https://joshuaetok.github.io/portfolio/" />
+
+          <input
+            class="round"
+            type="text"
+            name="Name"
+            placeholder="Full Name"
+            required
+          />
+          <input
+            class="round"
+            type="email"
+            name="Email"
+            placeholder="Email Address"
+            required
+          />
+          <textarea
+            class="round"
+            name="Message"
+            rows="7"
+            placeholder="Message"
+            required
+          ></textarea>
+          <button type="submit" class="btn primary">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="./mix/dist/mixitup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 2000, offset: 80 });
+    </script>
     <script src="./index.js"></script>
   </body>
 </html>

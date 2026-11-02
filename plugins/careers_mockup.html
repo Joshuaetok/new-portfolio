@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1440px;
+    height: 900px;
+    background: linear-gradient(135deg, #0a0e1a 0%, #111827 45%, #1e1b4b 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #f1f5f9;
+    padding: 32px 40px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Header Window Frame */
+  .window-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .window-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .dot { width: 13px; height: 13px; border-radius: 50%; }
+  .dot.red { background: #ef4444; }
+  .dot.yellow { background: #f59e0b; }
+  .dot.green { background: #10b981; }
+
+  .brand-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  }
+  .brand-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .brand-sub {
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .tech-pills {
+    display: flex;
+    gap: 8px;
+  }
+  .tech-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #cbd5e1;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Main Grid */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 0.9fr;
+    gap: 24px;
+    margin-top: 18px;
+    flex: 1;
+  }
+
+  .card {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #6366f1, #38bdf8);
+    opacity: 0.85;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .card-title-wrap h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title-wrap p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 3px;
+  }
+  .tag-indicator {
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  /* Column 1: Dual-Mode Shortcode */
+  .job-card-preview {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .job-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .job-role-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+  .job-type-pill {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .job-location {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .job-summary {
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .job-btn-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-apply-sm {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+  }
+  .slider-teaser-box {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px dashed rgba(99, 102, 241, 0.3);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .slider-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .slider-track {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .mini-job-item {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    color: #e2e8f0;
+    font-weight: 600;
+    flex: 1;
+  }
+  .mini-job-terminal {
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    color: #a5b4fc;
+    font-weight: 700;
+  }
+
+  /* Column 2: Role Detail & Application Modal */
+  .modal-mock {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+  }
+  .modal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+  .modal-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .modal-bullets {
+    margin-bottom: 12px;
+  }
+  .modal-bullets h5 {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .modal-bullets ul {
+    list-style: none;
+    font-size: 11px;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+  .modal-bullets li::before {
+    content: "•";
+    color: #6366f1;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .form-input {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+  .file-dropzone {
+    background: rgba(99, 102, 241, 0.06);
+    border: 1px dashed rgba(99, 102, 241, 0.35);
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    font-size: 11px;
+    color: #a5b4fc;
+    margin-bottom: 10px;
+  }
+  .btn-submit-modal {
+    width: 100%;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+  }
+
+  /* Column 3: Admin & Zero-Trace */
+  .admin-box {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .admin-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .admin-field {
+    margin-bottom: 8px;
+  }
+  .admin-label {
+    font-size: 11px;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .admin-val {
+    font-size: 11px;
+    color: #f1f5f9;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .privacy-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 78, 59, 0.2) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .privacy-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #34d399;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .privacy-desc {
+    font-size: 11px;
+    color: #a7f3d0;
+    line-height: 1.45;
+  }
+
+  /* Footer Window Frame */
+  .window-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-stats {
+    display: flex;
+    gap: 28px;
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .stat-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-top: 2px;
+  }
+  .footer-auth {
+    font-size: 12px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-auth strong {
+    color: #a5b4fc;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Window Header -->
+  <div class="window-top">
+    <div class="brand-title">
+      <div class="window-dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="brand-icon">💼</div>
+      <div>
+        <div class="brand-name">
+          Ajalisco Careers
+          <span class="brand-badge">WordPress Recruitment Plugin</span>
+        </div>
+        <div class="brand-sub">Lightweight Corporate Job Board, Candidate Application Pipeline & Role-Detail Modal</div>
+      </div>
+    </div>
+    <div class="tech-pills">
+      <div class="tech-pill"><span>⚡</span> PHP 7.4+ OOP</div>
+      <div class="tech-pill"><span>📁</span> Custom Post Types</div>
+      <div class="tech-pill"><span>📎</span> MIME-Secure CV Uploads</div>
+      <div class="tech-pill"><span>🛡️</span> Zero-Trace Privacy</div>
+    </div>
+  </div>
+
+  <!-- Main Showcase Grid -->
+  <div class="grid-container">
+
+    <!-- Card 1: Dual-Mode Shortcode -->
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <h3><span>🌐</span> Dual-Mode Frontend Display</h3>
+            <p>Adaptive Shortcode: Full Catalog or Teaser Row</p>
+          </div>
+          <span class="tag-indicator">[ajalisco_jobs]</span>
+        </div>
+
+        <!-- Mode A: Full Catalog -->
+        <div class="job-card-preview">
+          <div class="job-header-row">
+            <span class="job-role-title">Lead Baker & Production Supervisor</span>
+            <span class="job-type-pill">Full-Time</span>
+          </div>
+          <div class="job-location">📍 Central Factory • Ikeja, Lagos</div>
+          <p class="job-summary">
+            Supervise daily commercial baking operations, maintain ingredient consistency, and lead the shift production team.
+          </p>
+          <div class="job-btn-row">
+            <span style="font-size: 11px; color: #94a3b8;">Posted: Active</span>
+            <button class="btn-apply-sm">View Role & Apply →</button>
+          </div>
+        </div>
+
+        <!-- Mode B: Slider Teaser -->
+        <div class="slider-teaser-box">
+          <div class="slider-badge">Homepage Teaser Mode (Horizontal Slider)</div>
+          <div class="slider-track">
+            <div class="mini-job-item">Mixer Operator</div>
+            <div class="mini-job-item">Bakery Assistant</div>
+            <div class="mini-job-terminal">View All Roles (5) →</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 11px; color: #64748b; margin-top: 10px;">
+        Auto-switches layout via <code>view_all_url</code> attribute • Native Elementor shortcode integration.
+      </div>
+    </div>
+
+    <!-- Card 2: Role Detail & Application Modal -->
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <h3><span>📋</span> Interactive Application Modal</h3>
+            <p>Accessible Modal with Server-Validated CV Upload</p>
+          </div>
+          <span class="tag-indicator">AJAX Pipeline</span>
+        </div>
+
+        <div class="modal-mock">
+          <div class="modal-top">
+            <span class="modal-title">Franchise Operations Partner</span>
+            <span style="font-size: 11px; color: #64748b;">✕</span>
+          </div>
+          <div class="modal-bullets">
+            <h5>Core Responsibilities</h5>
+            <ul>
+              <li>Manage franchise retail audits and quality control standards</li>
+              <li>Coordinate inventory logistics with regional distribution centers</li>
+            </ul>
+          </div>
+          <div class="form-row">
+            <div class="form-input">Full Name: John Doe</div>
+            <div class="form-input">Email: john@example.com</div>
+          </div>
+          <div class="form-row">
+            <div class="form-input">Phone: +234 801 234 5678</div>
+            <div class="form-input">Years Experience: 4+</div>
+          </div>
+          <div class="file-dropzone">
+            📎 Attach Résumé / CV (PDF or Word, max 5MB)
+          </div>
+          <button class="btn-submit-modal">Submit Application (AJAX) ✓</button>
+        </div>
+      </div>
+
+      <div style="font-size: 11px; color: #64748b; margin-top: 10px;">
+        Server-side MIME check • Honeypot bot protection • Nonce verified.
+      </div>
+    </div>
+
+    <!-- Card 3: Admin & Privacy Architecture -->
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <h3><span>⚙️</span> Admin & Privacy Architecture</h3>
+            <p>Clean WP Admin Integration & Zero-Trace Storage</p>
+          </div>
+          <span class="tag-indicator">Privacy-First</span>
+        </div>
+
+        <div class="admin-box">
+          <div class="admin-title"><span>🛠️</span> Job Postings → Settings</div>
+          <div class="admin-field">
+            <span class="admin-label">Careers Landing Page:</span>
+            <div class="admin-val">Careers & Opportunities (/careers/)</div>
+          </div>
+          <div class="admin-field">
+            <span class="admin-label">Application Receiving Email:</span>
+            <div class="admin-val">careers@ajaliscogroup.com</div>
+          </div>
+        </div>
+
+        <div class="privacy-card">
+          <div class="privacy-title"><span>🛡️</span> Zero-Trace Privacy Footprint</div>
+          <p class="privacy-desc">
+            Uploaded applicant CVs are attached to the admin notification email and <strong>immediately wiped from the server disk</strong> upon dispatch. Zero sensitive applicant PII is permanently stored in the database.
+          </p>
+        </div>
+      </div>
+
+      <div style="font-size: 11px; color: #64748b; margin-top: 10px;">
+        Settings API gated behind <code>manage_options</code> • Real-time database sync.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Window Footer -->
+  <div class="window-footer">
+    <div class="footer-stats">
+      <div class="stat-item">
+        <span class="stat-label">Architecture</span>
+        <span class="stat-val">Native CPT & Settings API</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">File Security</span>
+        <span class="stat-val">Server-Side MIME & 5MB Limit</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Storage Impact</span>
+        <span class="stat-val">0 DB Bloat (Disk-Purged CVs)</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Compatibility</span>
+        <span class="stat-val">Classic + Elementor Shortcode</span>
+      </div>
+    </div>
+    <div class="footer-auth">
+      Engineered by <strong>Joshua Etok</strong> • WordPress Plugin Developer
+    </div>
+  </div>
+
+</body>
+</html>

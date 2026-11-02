@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1440px;
+    height: 900px;
+    background: linear-gradient(135deg, #09121a 0%, #0d1b2a 40%, #062b1e 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #f1f5f9;
+    padding: 32px 40px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Header Window Frame */
+  .window-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .window-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .dot { width: 13px; height: 13px; border-radius: 50%; }
+  .dot.red { background: #ef4444; }
+  .dot.yellow { background: #f59e0b; }
+  .dot.green { background: #10b981; }
+
+  .brand-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+  }
+  .brand-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-badge {
+    background: rgba(37, 211, 102, 0.18);
+    color: #4ade80;
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .brand-sub {
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .tech-pills {
+    display: flex;
+    gap: 8px;
+  }
+  .tech-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #cbd5e1;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Main Grid */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+    margin-top: 18px;
+    flex: 1;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #25d366, #7f54b3);
+    opacity: 0.9;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .card-title-wrap h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title-wrap p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+  .tag-indicator {
+    background: rgba(37, 211, 102, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  /* Product Card Snippet */
+  .product-bar {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .prod-details h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+  .prod-details span {
+    font-size: 12px;
+    color: #38bdf8;
+    font-weight: 700;
+  }
+  .wa-order-btn {
+    background: #25d366;
+    color: #062b1e;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  }
+
+  /* Quick Order Dialog */
+  .quick-order-dialog {
+    background: rgba(10, 17, 28, 0.95);
+    border: 1px solid rgba(37, 211, 102, 0.25);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+  .dialog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 12px;
+  }
+  .dialog-head h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .dialog-order-summary {
+    background: rgba(37, 211, 102, 0.08);
+    border: 1px solid rgba(37, 211, 102, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #86efac;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .form-control {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #f8fafc;
+  }
+  .phone-row {
+    display: flex;
+    gap: 8px;
+  }
+  .country-tag {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .submit-wa-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #25d366 0%, #16a34a 100%);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 10px;
+    border: none;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  }
+
+  /* Admin Metabox */
+  .admin-box {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .admin-order-id {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .status-badge {
+    background: rgba(37, 211, 102, 0.2);
+    color: #4ade80;
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+  .canned-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .canned-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .canned-btn span.send {
+    color: #38bdf8;
+    font-weight: 600;
+    font-size: 11px;
+  }
+
+  /* Funnel Analytics */
+  .funnel-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .funnel-step {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  .funnel-val {
+    font-size: 16px;
+    font-weight: 700;
+    color: #25d366;
+  }
+  .funnel-step:last-child .funnel-val {
+    color: #38bdf8;
+  }
+  .funnel-lbl {
+    font-size: 10.5px;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+
+  /* Desktop QR Snippet */
+  .qr-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(127, 84, 179, 0.12);
+    border: 1px solid rgba(127, 84, 179, 0.3);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 12px;
+  }
+  .qr-icon {
+    width: 44px;
+    height: 44px;
+    background: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .qr-text h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e9d5ff;
+  }
+  .qr-text p {
+    font-size: 11px;
+    color: #c084fc;
+  }
+
+  /* Bottom Bar */
+  .footer-bar {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  .features-list {
+    display: flex;
+    gap: 20px;
+    font-size: 12.5px;
+    color: #94a3b8;
+  }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .check-icon {
+    color: #25d366;
+    font-weight: 700;
+  }
+  .cta-badge {
+    background: linear-gradient(135deg, #25d366 0%, #16a34a 100%);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Window Bar -->
+  <div class="window-top">
+    <div class="brand-title">
+      <div class="window-dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="brand-icon">⚡</div>
+      <div>
+        <div class="brand-name">
+          OrderSpell
+          <span class="brand-badge">WooCommerce Extension</span>
+        </div>
+        <div class="brand-sub">Conversational Commerce &amp; Two-Tap Chat Orders (HPOS Compatible)</div>
+      </div>
+    </div>
+
+    <div class="tech-pills">
+      <div class="tech-pill"><span>🛍️</span> High-Performance Order Storage (HPOS)</div>
+      <div class="tech-pill"><span>💬</span> WhatsApp Native Deep Link</div>
+      <div class="tech-pill"><span>⚡</span> Vanilla JS (&lt;12KB)</div>
+      <div class="tech-pill"><span>📊</span> Send-Tracking Telemetry</div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid-container">
+
+    <!-- Left Column: Front-End Shopper Experience -->
+    <div class="column">
+      <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <h3>🛒 Shopper Experience: Two-Tap Order</h3>
+              <p>Captures order in Woo database prior to WhatsApp redirect</p>
+            </div>
+            <span class="tag-indicator">Zero Lost Leads</span>
+          </div>
+
+          <!-- Product Card Snippet -->
+          <div class="product-bar">
+            <div class="prod-details">
+              <h4>HyperSound X1 Pro ANC</h4>
+              <span>$149.00 • In Stock</span>
+            </div>
+            <div class="wa-order-btn">
+              <span>💬</span> Order on WhatsApp
+            </div>
+          </div>
+
+          <!-- Quick Order Dialog Sheet -->
+          <div class="quick-order-dialog">
+            <div class="dialog-head">
+              <h4>Instant WhatsApp Checkout</h4>
+              <span style="font-size: 11px; color: #4ade80; font-weight: 600;">2-Tap Fast Path</span>
+            </div>
+
+            <div class="dialog-order-summary">
+              <span>1x HyperSound X1 Pro Headphones</span>
+              <strong>$149.00</strong>
+            </div>
+
+            <div class="form-group">
+              <label>Full Name</label>
+              <div class="form-control">Sarah Jenkins</div>
+            </div>
+
+            <div class="form-group">
+              <label>WhatsApp Number</label>
+              <div class="phone-row">
+                <div class="country-tag">🇳🇬 +234</div>
+                <div class="form-control" style="flex: 1;">803 456 7890</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Delivery Address</label>
+              <div class="form-control">14 Admiralty Way, Lekki Phase 1, Lagos</div>
+            </div>
+
+            <div class="submit-wa-btn">
+              ⚡ Place Order &amp; Launch WhatsApp
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 12px; color: #94a3b8; line-height: 1.4; margin-top: 10px;">
+          Even if customer network drops in WhatsApp, the store captures the order and phone number in WooCommerce.
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Merchant Admin & Telemetry -->
+    <div class="column">
+      <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <h3>📦 Merchant Command &amp; Telemetry</h3>
+              <p>Native WooCommerce order metabox &amp; funnel insights</p>
+            </div>
+            <span class="tag-indicator" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">Woo Admin</span>
+          </div>
+
+          <!-- Admin Order Screen Metabox -->
+          <div class="admin-box">
+            <div class="admin-order-id">
+              <span>Order #49201 — Sarah Jenkins ($149.00)</span>
+              <span class="status-badge">🟢 Confirmed Sent</span>
+            </div>
+
+            <div class="canned-actions">
+              <div class="canned-btn">
+                <span>💬 1-Click: Confirm Order &amp; Send Bank Details</span>
+                <span class="send">Send wa.me →</span>
+              </div>
+              <div class="canned-btn">
+                <span>📍 1-Click: Request Delivery Address / GPS Pin</span>
+                <span class="send">Send wa.me →</span>
+              </div>
+              <div class="canned-btn">
+                <span>🚚 1-Click: Send Dispatch &amp; Tracking Update</span>
+                <span class="send">Send wa.me →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversion Telemetry -->
+          <div style="margin-bottom: 10px;">
+            <div style="font-size: 12px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px;">Conversion Funnel Telemetry</div>
+            <div class="funnel-container">
+              <div class="funnel-step">
+                <div class="funnel-val">1,840</div>
+                <div class="funnel-lbl">Page Views</div>
+              </div>
+              <div class="funnel-step">
+                <div class="funnel-val">412</div>
+                <div class="funnel-lbl">Clicks</div>
+              </div>
+              <div class="funnel-step">
+                <div class="funnel-val">320</div>
+                <div class="funnel-lbl">Woo Orders</div>
+              </div>
+              <div class="funnel-step">
+                <div class="funnel-val">96.2%</div>
+                <div class="funnel-lbl">Dispatched</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop QR Code Checkout -->
+          <div class="qr-banner">
+            <div class="qr-icon">📱</div>
+            <div class="qr-text">
+              <h5>Desktop QR Code Handoff</h5>
+              <p>Dynamic modal generates instant QR code for desktop shoppers to complete in WhatsApp.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 12px; color: #94a3b8; line-height: 1.4; margin-top: 10px;">
+          Zero third-party API subscription fees. Operates via native wa.me deep links with first-party analytics.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Highlights Bar -->
+  <div class="footer-bar">
+    <div class="features-list">
+      <div class="feature-item"><span class="check-icon">✓</span> Immediate DB Order Creation Prior to Handoff</div>
+      <div class="feature-item"><span class="check-icon">✓</span> WooCommerce HPOS Compliant</div>
+      <div class="feature-item"><span class="check-icon">✓</span> Desktop QR Code Instant Checkout</div>
+      <div class="feature-item"><span class="check-icon">✓</span> Sticky Mobile Bottom Checkout Bar</div>
+    </div>
+    <div class="cta-badge">Engineered by Joshua Etok</div>
+  </div>
+
+</body>
+</html>
