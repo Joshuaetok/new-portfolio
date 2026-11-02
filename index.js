@@ -133,14 +133,17 @@ const educationContent = `<h4>Education</h4>
   
   // skills
   const skillsContent = `<h4>Skills</h4>
-                <p>Proficient in HTML, CSS, PHP, MySQL, and WordPress, with expertise in Figma, Webflow, and Canva for seamless web design.</p>
+                <p>Proficient in HTML, CSS, JavaScript, React, PHP, Laravel, MySQL, SQLite, and WordPress, with expertise in Figma, Webflow, and Canva for modern web design.</p>
                 <ul>
                     <li title="HTML5"><img src="./assets/html.png" alt="HTML logo"><span>HTML5</span></li>
                     <li title="JavaScript"><img src="./assets/JavaScript.png" alt="JS logo"><span>JavaScript</span></li>
+                    <li title="React"><img src="./assets/react.png" alt="React logo"><span>React</span></li>
                     <li title="PHP"><img src="./assets/PHP.png" alt="PHP logo"><span>PHP</span></li>
+                    <li title="Laravel"><img src="./assets/laravel.png" alt="Laravel logo"><span>Laravel</span></li>
+                    <li title="WordPress"><img src="./assets/Wordpress.png" alt="Wordpress logo"><span>WordPress</span></li>
+                    <li title="SQLite"><img src="./assets/sqlite.png" alt="SQLite logo"><span>SQLite</span></li>
                     <li title="CSS3"><img src="./assets/css.png" alt="CSS logo"><span>CSS3</span></li>
                     <li title="Tailwind CSS"><img src="./assets/tailwind.png" alt="Tailwind logo"><span>Tailwind</span></li>
-                    <li title="WordPress"><img src="./assets/Wordpress.png" alt="Wordpress logo"><span>WordPress</span></li>
                     <li title="Webflow"><img src="./assets/webflow.png" alt="Webflow logo"><span>Webflow</span></li>
                     <li title="Figma"><img src="./assets/Figma.png" alt="Figma logo"><span>Figma</span></li>
                     <li title="Canva"><img src="./assets/Canva.jpg" alt="Canva logo"><span>Canva</span></li>
